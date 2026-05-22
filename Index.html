@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding of Ahmed & Donia</title>
+    <!-- استيراد خطوط فخمة من جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cairo:wght@300;400;700&family=Cinzel:wght@400;600&family=Reem+Kufi:wght@400;600&display=swap" rel="stylesheet">
+    <!-- مكتبة الأنميشن الشهيرة Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        :root {
+            --bg-color: #0b0c10; /* أسود ملكي فاخر */
+            --gold-primary: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --gold-text: #dfba6b;
+            --white-soft: #f4f4f4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--white-soft);
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* خلفية ناعمة لتأثير الفخامة */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(20,20,30,0.4) 0%, rgba(11,12,16,1) 100%);
+            z-index: 1;
+        }
+
+        /* الإطار الذهبي الملكي المحيط بالصفحة */
+        .luxury-border {
+            position: fixed;
+            top: 20px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            border: 2px solid transparent;
+            border-image: var(--gold-primary) 1;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* زوايا الإطار المزخرفة */
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid transparent;
+            z-index: 11;
+        }
+        .top-left { top: 15px; left: 15px; border-top-color: #dfba6b; border-left-color: #dfba6b; }
+        .top-right { top: 15px; right: 15px; border-top-color: #dfba6b; border-right-color: #dfba6b; }
+        .bottom-left { bottom: 15px; left: 15px; border-bottom-color: #dfba6b; border-left-color: #dfba6b; }
+        .bottom-right { bottom: 15px; right: 15px; border-bottom-color: #dfba6b; border-right-color: #dfba6b; }
+
+        /* الحاوية الرئيسية */
+        .main-container {
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            z-index: 5;
+            padding: 40px 20px;
+        }
+
+        /* الشعار العلوي بالحروف الأولى */
+        .monogram {
+            font-family: 'Alex Brush', cursive;
+            font-size: 5rem;
+            background: var(--gold-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            animation: fadeInDown 2s ease;
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            color: var(--white-soft);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        /* الخط الفاصل الذهبي */
+        .divider {
+            width: 150px;
+            height: 2px;
+            background: var(--gold-primary);
+            margin: 20px auto;
+            position: relative;
+        }
+        .divider::after {
+            content: '✦';
+            color: #dfba6b;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-color);
+            padding: 0 10px;
+        }
+
+        /* أسماء العرسان */
+        .names {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            background: var(--gold-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+            text-shadow: 0px 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .invitation-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 40px;
+            font-weight: 300;
+            color: #ccc;
+        }
+
+        /* تصميم العداد التنازلي الفاخر */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            direction: ltr;
+        }
+
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(223, 186, 107, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+            min-width: 110px;
+            backdrop-filter: blur(5px);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .countdown-box:hover {
+            transform: translateY(-5px);
+            border-color: #dfba6b;
+            box-shadow: 0 15px 35px rgba(188, 145, 59, 0.25);
+        }
+
+        .countdown-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            background: var(--gold-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            color: var(--white-soft);
+            letter-spacing: 1px;
+        }
+
+        /* تاريخ الزفاف الأسفل */
+        .wedding-date {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold-text);
+            margin-top: 50px;
+            letter-spacing: 4px;
+        }
+
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 600px) {
+            .names { font-size: 2.2rem; }
+            .monogram { font-size: 4rem; }
+            .countdown-container { gap: 10px; }
+            .countdown-box { min-width: 75px; padding: 12px; }
+            .countdown-number { font-size: 1.8rem; }
+            .countdown-label { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+    <div class="luxury-border"></div>
+    <div class="corner top-left"></div>
+    <div class="corner top-right"></div>
+    <div class="corner bottom-left"></div>
+    <div class="corner bottom-right"></div>
+
+    <div class="main-container animate__animated animate__fadeIn">
+        
+        <!-- شعار الحروف الأولى الفاخر -->
+        <div class="monogram">A & D</div> 
+        
+        <div class="subtitle animate__animated animate__fadeInUp animate__delay-1s">THE WEDDING CELEBRATION</div>
+        
+        <div class="divider"></div>
+
+        <!-- أسماء العرسان المحدثة -->
+        <h1 class="names animate__animated animate__zoomIn animate__delay-1s">AHMED & DONIA</h1>
+        
+        <p class="invitation-text animate__animated animate__fadeInUp animate__delay-2s">
+            بكل حب وفرح، ندعوكم لمشاركتنا ليلة العمر وتوثيق أجمل لحظات حياتنا. <br>
+            حضوركم يكتمل به السعد وتضاء به الأنوار.
+        </p>
+
+        <!-- العداد التنازلي المحدث تلقائياً -->
+        <div class="countdown-container animate__animated animate__fadeInUp animate__delay-3s">
+            <div class="countdown-box">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">ثانية</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">دقيقة</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">ساعة</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">يوم</span>
+            </div>
+        </div>
+
+        <!-- تاريخ اليوم المشهود -->
+        <div class="wedding-date animate__animated animate__fadeInUp animate__delay-4s">
+            29 . 10 . 2026
+        </div>
+
+    </div>
+
+    <script>
+        // تحديد موعد الزفاف في 29 أكتوبر 2026 الساعة 7 مساءً
+        const weddingDate = new Date("October 29, 2026 19:00:00").getTime();
+
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector(".countdown-container").innerHTML = "<h2 style='color:#dfba6b; font-family:\"Cairo\";'>اليوم هو يوم الفرح! زفاف مبارك أحمد ودنيا</h2>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
