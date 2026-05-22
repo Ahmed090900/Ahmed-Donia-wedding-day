@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding of Ahmed & Donia</title>
-    <!-- استيراد خطوط فخمة من جوجل -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cairo:wght@300;400;700&family=Cinzel:wght@400;600&family=Reem+Kufi:wght@400;600&display=swap" rel="stylesheet">
-    <!-- مكتبة الأنميشن الشهيرة Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         :root {
-            --bg-color: #0b0c10; /* أسود ملكي فاخر */
+            --bg-color: #060709; /* أسود أعمق وأكثر فخامة */
             --gold-primary: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
             --gold-text: #dfba6b;
             --white-soft: #f4f4f4;
@@ -29,7 +26,7 @@
             background-color: var(--bg-color);
             color: var(--white-soft);
             font-family: 'Cairo', sans-serif;
-            overflow-x: hidden;
+            overflow: hidden; /* لمنع التمرير أثناء شاشة التحميل */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -37,18 +34,59 @@
             position: relative;
         }
 
-        /* خلفية ناعمة لتأثير الفخامة */
-        .stars {
-            position: absolute;
+        /* 1. شاشة التحميل الترحيبية الفاخرة (Preloader) */
+        #preloader {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(20,20,30,0.4) 0%, rgba(11,12,16,1) 100%);
-            z-index: 1;
+            background-color: var(--bg-color);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1), transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        /* الإطار الذهبي الملكي المحيط بالصفحة */
+        .loader-logo {
+            font-family: 'Alex Brush', cursive;
+            font-size: 6rem;
+            background: var(--gold-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        .loader-line {
+            width: 0;
+            height: 1px;
+            background: var(--gold-primary);
+            margin-top: 20px;
+            animation: loadBar 1.6s forwards ease-in-out;
+        }
+
+        /* 2. جزيئات الغبار الذهبي المتحركة في الخلفية */
+        .particles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(252,246,186,0.8) 0%, rgba(179,135,40,0) 70%);
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+        }
+
+        /* الإطار الذهبي الملكي */
         .luxury-border {
             position: fixed;
             top: 20px;
@@ -59,6 +97,9 @@
             border-image: var(--gold-primary) 1;
             z-index: 10;
             pointer-events: none;
+            opacity: 0;
+            transform: scale(1.02);
+            transition: all 1.5s cubic-bezier(0.1, 0.8, 0.25, 1) 1s;
         }
 
         /* زوايا الإطار المزخرفة */
@@ -68,13 +109,15 @@
             height: 30px;
             border: 3px solid transparent;
             z-index: 11;
+            opacity: 0;
+            transition: all 1.5s cubic-bezier(0.1, 0.8, 0.25, 1) 1.2s;
         }
-        .top-left { top: 15px; left: 15px; border-top-color: #dfba6b; border-left-color: #dfba6b; }
-        .top-right { top: 15px; right: 15px; border-top-color: #dfba6b; border-right-color: #dfba6b; }
-        .bottom-left { bottom: 15px; left: 15px; border-bottom-color: #dfba6b; border-left-color: #dfba6b; }
-        .bottom-right { bottom: 15px; right: 15px; border-bottom-color: #dfba6b; border-right-color: #dfba6b; }
+        .top-left { top: 15px; left: 15px; border-top-color: #dfba6b; border-left-color: #dfba6b; transform: translate(-10px, -10px); }
+        .top-right { top: 15px; right: 15px; border-top-color: #dfba6b; border-right-color: #dfba6b; transform: translate(10px, -10px); }
+        .bottom-left { bottom: 15px; left: 15px; border-bottom-color: #dfba6b; border-left-color: #dfba6b; transform: translate(-10px, 10px); }
+        .bottom-right { bottom: 15px; right: 15px; border-bottom-color: #dfba6b; border-right-color: #dfba6b; transform: translate(10px, 10px); }
 
-        /* الحاوية الرئيسية */
+        /* الحاوية الرئيسية والمحتوى */
         .main-container {
             max-width: 800px;
             width: 90%;
@@ -83,67 +126,70 @@
             padding: 40px 20px;
         }
 
-        /* الشعار العلوي بالحروف الأولى */
+        /* تأثيرات الظهور التدريجي للعناصر الفاخرة */
+        .animate-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.215, 0.610, 0.355, 1), transform 1.2s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+
         .monogram {
             font-family: 'Alex Brush', cursive;
-            font-size: 5rem;
+            font-size: 5.5rem;
             background: var(--gold-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 5px;
-            animation: fadeInDown 2s ease;
         }
 
         .subtitle {
             font-family: 'Cinzel', serif;
             font-size: 1.1rem;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             color: var(--white-soft);
             margin-bottom: 20px;
             opacity: 0.8;
         }
 
-        /* الخط الفاصل الذهبي */
         .divider {
-            width: 150px;
-            height: 2px;
+            width: 180px;
+            height: 1px;
             background: var(--gold-primary);
-            margin: 20px auto;
+            margin: 25px auto;
             position: relative;
         }
         .divider::after {
             content: '✦';
             color: #dfba6b;
             position: absolute;
-            top: -10px;
+            top: -11px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--bg-color);
             padding: 0 10px;
         }
 
-        /* أسماء العرسان */
         .names {
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             background: var(--gold-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 20px 0;
-            text-shadow: 0px 4px 15px rgba(0,0,0,0.4);
+            margin: 25px 0;
+            text-shadow: 0px 4px 20px rgba(0,0,0,0.6);
         }
 
         .invitation-text {
-            font-size: 1.2rem;
-            line-height: 1.9;
+            font-size: 1.25rem;
+            line-height: 2;
             margin-bottom: 40px;
             font-weight: 300;
             color: #ccc;
         }
 
-        /* تصميم العداد التنازلي الفاخر */
+        /* العداد التنازلي الفاخر */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -155,18 +201,19 @@
         .countdown-box {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(223, 186, 107, 0.15);
-            padding: 20px;
-            border-radius: 12px;
-            min-width: 110px;
-            backdrop-filter: blur(5px);
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            padding: 22px;
+            border-radius: 15px;
+            min-width: 115px;
+            backdrop-filter: blur(8px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
         }
 
         .countdown-box:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: #dfba6b;
-            box-shadow: 0 15px 35px rgba(188, 145, 59, 0.25);
+            background: rgba(223, 186, 107, 0.05);
+            box-shadow: 0 20px 40px rgba(188, 145, 59, 0.25);
         }
 
         .countdown-number {
@@ -184,57 +231,75 @@
             font-family: 'Cairo', sans-serif;
             font-size: 0.9rem;
             color: var(--white-soft);
-            letter-spacing: 1px;
+            opacity: 0.8;
         }
 
-        /* تاريخ الزفاف الأسفل */
         .wedding-date {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--gold-text);
             margin-top: 50px;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
         }
 
-        /* تحسينات للشاشات الصغيرة */
+        /* --- Keyframes للأنيميشن الاحترافي --- */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(223,186,107,0)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(223,186,107,0.5)); }
+        }
+
+        @keyframes loadBar {
+            to { width: 200px; }
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) translateX(0) scale(0.5); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(50px) scale(1.2); opacity: 0; }
+        }
+
+        /* تحسين التجاوب للهواتف */
         @media (max-width: 600px) {
-            .names { font-size: 2.2rem; }
-            .monogram { font-size: 4rem; }
+            .names { font-size: 2.3rem; letter-spacing: 1px; }
+            .monogram { font-size: 4.2rem; }
             .countdown-container { gap: 10px; }
-            .countdown-box { min-width: 75px; padding: 12px; }
+            .countdown-box { min-width: 78px; padding: 14px 8px; border-radius: 10px; }
             .countdown-number { font-size: 1.8rem; }
             .countdown-label { font-size: 0.75rem; }
+            .luxury-border { top: 10px; bottom: 10px; left: 10px; right: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="stars"></div>
-    <div class="luxury-border"></div>
-    <div class="corner top-left"></div>
-    <div class="corner top-right"></div>
-    <div class="corner bottom-left"></div>
-    <div class="corner bottom-right"></div>
+    <div id="preloader">
+        <div class="loader-logo">A & D</div>
+        <div class="loader-line"></div>
+    </div>
 
-    <div class="main-container animate__animated animate__fadeIn">
-        
-        <!-- شعار الحروف الأولى الفاخر -->
-        <div class="monogram">A & D</div> 
-        
-        <div class="subtitle animate__animated animate__fadeInUp animate__delay-1s">THE WEDDING CELEBRATION</div>
-        
-        <div class="divider"></div>
+    <div class="particles-container" id="particles"></div>
+    <div class="luxury-border" id="luxuryBorder"></div>
+    <div class="corner top-left" id="c1"></div>
+    <div class="corner top-right" id="c2"></div>
+    <div class="corner bottom-left" id="c3"></div>
+    <div class="corner bottom-right" id="c4"></div>
 
-        <!-- أسماء العرسان المحدثة -->
-        <h1 class="names animate__animated animate__zoomIn animate__delay-1s">AHMED & DONIA</h1>
+    <div class="main-container">
         
-        <p class="invitation-text animate__animated animate__fadeInUp animate__delay-2s">
+        <div class="monogram animate-reveal" style="transition-delay: 1.4s;">A & D</div> 
+        <div class="subtitle animate-reveal" style="transition-delay: 1.6s;">THE WEDDING CELEBRATION</div>
+        
+        <div class="divider animate-reveal" style="transition-delay: 1.8s;"></div>
+
+        <h1 class="names animate-reveal" style="transition-delay: 2.0s;">AHMED & DONIA</h1>
+        
+        <p class="invitation-text animate-reveal" style="transition-delay: 2.2s;">
             بكل حب وفرح، ندعوكم لمشاركتنا ليلة العمر وتوثيق أجمل لحظات حياتنا. <br>
             حضوركم يكتمل به السعد وتضاء به الأنوار.
         </p>
 
-        <!-- العداد التنازلي المحدث تلقائياً -->
-        <div class="countdown-container animate__animated animate__fadeInUp animate__delay-3s">
+        <div class="countdown-container animate-reveal" style="transition-delay: 2.4s;">
             <div class="countdown-box">
                 <span class="countdown-number" id="seconds">00</span>
                 <span class="countdown-label">ثانية</span>
@@ -253,15 +318,61 @@
             </div>
         </div>
 
-        <!-- تاريخ اليوم المشهود -->
-        <div class="wedding-date animate__animated animate__fadeInUp animate__delay-4s">
+        <div class="wedding-date animate-reveal" style="transition-delay: 2.6s;">
             29 . 10 . 2026
         </div>
 
     </div>
 
     <script>
-        // تحديد موعد الزفاف في 29 أكتوبر 2026 الساعة 7 مساءً
+        // تأثير شاشة التحميل وظهور محتويات الصفحة بشكل منسق وبترتيب زمني رائع
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.transform = 'scale(1.05)';
+                document.body.style.overflow = 'auto';
+                
+                // إظهار الإطارات الملكية
+                document.getElementById('luxuryBorder').style.opacity = '1';
+                document.getElementById('luxuryBorder').style.transform = 'scale(1)';
+                ['c1', 'c2', 'c3', 'c4'].forEach(id => {
+                    document.getElementById(id).style.opacity = '1';
+                    document.getElementById(id).style.transform = 'translate(0, 0)';
+                });
+
+                // تفعيل أنيميشن المحتوى بالترتيب
+                const reveals = document.querySelectorAll('.animate-reveal');
+                reveals.forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+
+                setTimeout(() => { preloader.remove(); }, 1000);
+            }, 1800); // تعرض شاشة التحميل لمدة 1.8 ثانية لمنح تأثير سينمائي واعد
+        });
+
+        // توليد الغبار الذهبي بشكل عشوائي واحترافي في الخلفية
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 40;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 4 + 2; // أحجام مختلفة بين 2px و 6px
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDuration = `${Math.random() * 8 + 6}s`; // سرعات متفاوتة
+            particle.style.animationDelay = `${Math.random() * 6}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+
+        // كود تشغيل العداد التنازلي بدقة إلى تاريخ 29 أكتوبر 2026
         const weddingDate = new Date("October 29, 2026 19:00:00").getTime();
 
         const countdownInterval = setInterval(function() {
@@ -280,7 +391,7 @@
 
             if (distance < 0) {
                 clearInterval(countdownInterval);
-                document.querySelector(".countdown-container").innerHTML = "<h2 style='color:#dfba6b; font-family:\"Cairo\";'>اليوم هو يوم الفرح! زفاف مبارك أحمد ودنيا</h2>";
+                document.querySelector(".countdown-container").innerHTML = "<h2 style='color:#dfba6b; font-family:\"Cairo\";'>اليوم زفاف أحمد ودنيا السعيد! زفاف مبارك</h2>";
             }
         }, 1000);
     </script>
