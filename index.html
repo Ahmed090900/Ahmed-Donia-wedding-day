@@ -1,411 +1,558 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding of Ahmed & Donia</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cairo:wght@300;400;700&family=Cinzel:wght@400;600&family=Reem+Kufi:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #050608; 
-            --gold-primary: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-            --gold-text: #dfba6b;
-            --white-soft: #f4f4f4;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Royal Wedding Invitation | Ahmed & Donia</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--white-soft);
-            font-family: 'Cairo', sans-serif;
-            overflow: hidden;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        /* 1. شاشة التحميل الترحيبية الفاخرة */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1);
-        }
+<style>
 
-        .loader-logo {
-            font-family: 'Alex Brush', cursive;
-            font-size: 6rem;
-            background: var(--gold-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: pulseGlow 2s infinite ease-in-out;
-        }
+:root{
+    --bg:#050505;
+    --gold:#D4AF37;
+    --gold-light:#f7e7a9;
+    --gold-dark:#8f6b14;
+    --white:#f8f8f8;
+    --glass:rgba(255,255,255,0.05);
+}
 
-        /* 2. رسمة العروسين الأنيميشن المدمجة بالخلفية */
-        .wedding-bg-silhouette {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 650px;
-            height: 70vh;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" opacity="0.12"><path fill="%23dfba6b" d="M200 450c20-40 10-90 30-130s40-50 40-70-10-40-5-60 20-30 15-50-20-10-20-30 20-30 40-20 20 20 25 35 15 20 25 35c10 15 5 40 15 50s30 15 30 35-15 40-5 60 40 40 50 70 0 80 15 115c5 10 15 15 15 25H200z"/><path fill="%23dfba6b" d="M190 450c10-30 0-70 15-100s35-40 30-65-15-30-10-45 15-25 10-40-15-10-15-25 15-25 30-15 15 15 20 30 10 15 20 30c5 10 0 30 10 40s25 10 25 30-15 30-5 45 35 35 40 60 0 70 10 95H190z" opacity="0.7"/><circle cx="250" cy="80" r="40" fill="none" stroke="%23dfba6b" stroke-width="1" stroke-dasharray="2 4" opacity="0.5"/></svg>') no-repeat bottom center;
-            background-size: contain;
-            z-index: 2;
-            pointer-events: none;
-            mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-            opacity: 0;
-            transition: opacity 2s ease 1s;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* جزيئات الغبار الذهبي */
-        .particles-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at top, rgba(212,175,55,0.15), transparent 30%),
+    linear-gradient(to bottom,#050505,#0d0d0d 40%,#000);
+    font-family:'Cairo',sans-serif;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
 
-        .particle {
-            position: absolute;
-            background: radial-gradient(circle, rgba(252,246,186,0.9) 0%, rgba(179,135,40,0) 70%);
-            border-radius: 50%;
-            animation: floatUp linear infinite;
-        }
+/* ============================= */
+/* الخلفية الملكية */
+/* ============================= */
 
-        /* الإطار الفاخر */
-        .luxury-border {
-            position: fixed;
-            top: 20px;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            border: 1px solid transparent;
-            border-image: var(--gold-primary) 1;
-            z-index: 10;
-            pointer-events: none;
-            opacity: 0;
-            transform: scale(1.03);
-            transition: all 1.5s cubic-bezier(0.1, 0.8, 0.25, 1) 0.8s;
-        }
+body::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-opacity='.06'%3E%3Cpath d='M150 0v300M0 150h300'/%3E%3Ccircle cx='150' cy='150' r='100'/%3E%3Ccircle cx='150' cy='150' r='60'/%3E%3C/g%3E%3C/svg%3E");
+    opacity:.5;
+    animation:bgMove 40s linear infinite;
+}
 
-        .corner {
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            border: 2px solid transparent;
-            z-index: 11;
-            opacity: 0;
-            transition: all 1.5s cubic-bezier(0.1, 0.8, 0.25, 1) 1s;
-        }
-        .top-left { top: 15px; left: 15px; border-top-color: #dfba6b; border-left-color: #dfba6b; transform: translate(-10px, -10px); }
-        .top-right { top: 15px; right: 15px; border-top-color: #dfba6b; border-right-color: #dfba6b; transform: translate(10px, -10px); }
-        .bottom-left { bottom: 15px; left: 15px; border-bottom-color: #dfba6b; border-left-color: #dfba6b; transform: translate(-10px, 10px); }
-        .bottom-right { bottom: 15px; right: 15px; border-bottom-color: #dfba6b; border-right-color: #dfba6b; transform: translate(10px, 10px); }
+@keyframes bgMove{
+    from{transform:translateY(0)}
+    to{transform:translateY(-200px)}
+}
 
-        /* المحتوى الرئيسي */
-        .main-container {
-            max-width: 750px;
-            width: 90%;
-            text-align: center;
-            z-index: 5;
-            padding: 20px;
-        }
+/* ============================= */
+/* شاشة التحميل */
+/* ============================= */
 
-        /* تأثير الظهور التدريجي السلس */
-        .animate-reveal {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+#loader{
+    position:fixed;
+    inset:0;
+    background:#000;
+    z-index:99999;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transition:1.2s ease;
+}
 
-        .monogram {
-            font-family: 'Alex Brush', cursive;
-            font-size: 5.5rem;
-            background: var(--gold-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-        }
+.loader-monogram{
+    font-size:7rem;
+    font-family:'Alex Brush',cursive;
+    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:glow 2s infinite ease-in-out;
+}
 
-        .subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            letter-spacing: 6px;
-            color: var(--white-soft);
-            opacity: 0.7;
-        }
+.loader-text{
+    margin-top:10px;
+    letter-spacing:8px;
+    color:#c9b06a;
+    font-size:.9rem;
+}
 
-        .divider {
-            width: 120px;
-            height: 1px;
-            background: var(--gold-primary);
-            margin: 20px auto;
-            position: relative;
-        }
-        .divider::after {
-            content: '✦';
-            color: #dfba6b;
-            position: absolute;
-            top: -11px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-color);
-            padding: 0 8px;
-            font-size: 0.8rem;
-        }
+@keyframes glow{
+    0%,100%{
+        transform:scale(1);
+        filter:drop-shadow(0 0 10px rgba(212,175,55,.1));
+    }
+    50%{
+        transform:scale(1.05);
+        filter:drop-shadow(0 0 25px rgba(212,175,55,.6));
+    }
+}
 
-        .names {
-            font-family: 'Cinzel', serif;
-            font-size: 4rem;
-            font-weight: 600;
-            letter-spacing: 4px;
-            background: var(--gold-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 20px 0;
-            text-shadow: 0px 4px 25px rgba(0,0,0,0.8);
-        }
+/* ============================= */
+/* زخارف ملكية */
+/* ============================= */
 
-        .invitation-text {
-            font-size: 1.2rem;
-            line-height: 2;
-            margin-bottom: 35px;
-            font-weight: 300;
-            color: #bbb;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
+.corner{
+    position:fixed;
+    width:90px;
+    height:90px;
+    z-index:10;
+    opacity:.5;
+}
 
-        /* العداد التنازلي الزجاجي الفاخر */
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 35px;
-            direction: ltr;
-        }
+.top-left{
+    top:20px;
+    left:20px;
+    border-top:2px solid var(--gold);
+    border-left:2px solid var(--gold);
+}
 
-        .countdown-box {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(223, 186, 107, 0.12);
-            padding: 20px 15px;
-            border-radius: 16px;
-            min-width: 105px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-        }
+.top-right{
+    top:20px;
+    right:20px;
+    border-top:2px solid var(--gold);
+    border-right:2px solid var(--gold);
+}
 
-        .countdown-box:hover {
-            transform: translateY(-8px);
-            border-color: #dfba6b;
-            background: rgba(223, 186, 107, 0.04);
-            box-shadow: 0 20px 40px rgba(188, 145, 59, 0.2);
-        }
+.bottom-left{
+    bottom:20px;
+    left:20px;
+    border-bottom:2px solid var(--gold);
+    border-left:2px solid var(--gold);
+}
 
-        .countdown-number {
-            font-family: 'Cinzel', serif;
-            font-size: 2.6rem;
-            font-weight: 600;
-            background: var(--gold-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-            margin-bottom: 3px;
-        }
+.bottom-right{
+    bottom:20px;
+    right:20px;
+    border-bottom:2px solid var(--gold);
+    border-right:2px solid var(--gold);
+}
 
-        .countdown-label {
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.85rem;
-            color: var(--white-soft);
-            opacity: 0.7;
-        }
+/* ============================= */
+/* الكارت الرئيسي */
+/* ============================= */
 
-        .wedding-date {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--gold-text);
-            margin-top: 45px;
-            letter-spacing: 6px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
+.invitation-card{
+    width:90%;
+    max-width:900px;
+    padding:70px 50px;
+    border:1px solid rgba(212,175,55,.2);
+    background:rgba(10,10,10,.55);
+    backdrop-filter:blur(14px);
+    border-radius:40px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    box-shadow:
+    0 0 40px rgba(0,0,0,.7),
+    0 0 80px rgba(212,175,55,.08);
+    z-index:2;
+}
 
-        /* تأثيرات حركة الـ Keyframes */
-        @keyframes pulseGlow {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(223,186,107,0)); }
-            50% { transform: scale(1.03); filter: drop-shadow(0 0 20px rgba(223,186,107,0.4)); }
-        }
+/* خطوط داخلية */
 
-        @keyframes floatUp {
-            0% { transform: translateY(105vh) translateX(0) scale(0.4); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) translateX(30px) scale(1); opacity: 0; }
-        }
+.invitation-card::before{
+    content:'';
+    position:absolute;
+    inset:15px;
+    border:1px solid rgba(212,175,55,.12);
+    border-radius:30px;
+    pointer-events:none;
+}
 
-        /* تعديلات الشاشات الصغيرة لجعل رسمة العروسين متناسقة دائماً */
-        @media (max-width: 600px) {
-            .names { font-size: 2.2rem; letter-spacing: 2px; }
-            .monogram { font-size: 4rem; }
-            .countdown-container { gap: 8px; }
-            .countdown-box { min-width: 75px; padding: 12px 5px; border-radius: 12px; }
-            .countdown-number { font-size: 1.6rem; }
-            .countdown-label { font-size: 0.75rem; }
-            .wedding-bg-silhouette { height: 50vh; opacity: 0.08; }
-            .luxury-border { top: 12px; bottom: 12px; left: 12px; right: 12px; }
-        }
-    </style>
+/* التاج */
+
+.crown{
+    font-size:4rem;
+    margin-bottom:10px;
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+.monogram{
+    font-family:'Alex Brush',cursive;
+    font-size:6rem;
+    margin-bottom:10px;
+    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+    letter-spacing:8px;
+    font-size:.9rem;
+    color:#bda05b;
+    margin-bottom:30px;
+}
+
+/* الأسماء */
+
+.names{
+    font-family:'Cinzel',serif;
+    font-size:4.5rem;
+    line-height:1.3;
+    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:30px;
+}
+
+/* النص */
+
+.invitation-text{
+    max-width:700px;
+    margin:auto;
+    line-height:2.3;
+    color:#ddd;
+    font-size:1.2rem;
+    font-weight:300;
+}
+
+/* Divider */
+
+.divider{
+    width:180px;
+    height:1px;
+    background:linear-gradient(to right,transparent,var(--gold),transparent);
+    margin:35px auto;
+    position:relative;
+}
+
+.divider::after{
+    content:'✦';
+    position:absolute;
+    top:-13px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#0b0b0b;
+    color:var(--gold);
+    padding:0 10px;
+}
+
+/* التاريخ */
+
+.date{
+    margin-top:40px;
+    font-family:'Cinzel',serif;
+    letter-spacing:8px;
+    font-size:1.6rem;
+    color:var(--gold-light);
+}
+
+/* المكان */
+
+.location{
+    margin-top:15px;
+    color:#cfcfcf;
+    font-size:1rem;
+    letter-spacing:2px;
+}
+
+/* العداد */
+
+.countdown{
+    margin-top:45px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    direction:ltr;
+    flex-wrap:wrap;
+}
+
+.box{
+    width:110px;
+    padding:20px 10px;
+    background:var(--glass);
+    border:1px solid rgba(212,175,55,.15);
+    border-radius:20px;
+    backdrop-filter:blur(8px);
+    transition:.4s;
+}
+
+.box:hover{
+    transform:translateY(-8px);
+    border-color:rgba(212,175,55,.5);
+    box-shadow:0 15px 35px rgba(212,175,55,.12);
+}
+
+.number{
+    font-size:2.5rem;
+    font-family:'Cinzel',serif;
+    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.label{
+    margin-top:5px;
+    color:#d6d6d6;
+    font-size:.85rem;
+}
+
+/* particles */
+
+.particles{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle,var(--gold-light),transparent);
+    animation:particleMove linear infinite;
+    opacity:.7;
+}
+
+@keyframes particleMove{
+    from{
+        transform:translateY(100vh) scale(0);
+    }
+    to{
+        transform:translateY(-10vh) scale(1);
+    }
+}
+
+/* responsive */
+
+@media(max-width:768px){
+
+    .invitation-card{
+        padding:50px 25px;
+    }
+
+    .monogram{
+        font-size:4rem;
+    }
+
+    .names{
+        font-size:2.6rem;
+    }
+
+    .invitation-text{
+        font-size:1rem;
+    }
+
+    .box{
+        width:80px;
+        padding:15px 5px;
+    }
+
+    .number{
+        font-size:1.7rem;
+    }
+
+    .date{
+        font-size:1.1rem;
+        letter-spacing:4px;
+    }
+
+}
+
+.fade{
+    opacity:0;
+    transform:translateY(30px);
+    animation:fadeUp 1.5s forwards;
+}
+
+.delay1{animation-delay:1s}
+.delay2{animation-delay:1.4s}
+.delay3{animation-delay:1.8s}
+.delay4{animation-delay:2.2s}
+.delay5{animation-delay:2.6s}
+.delay6{animation-delay:3s}
+
+@keyframes fadeUp{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <div id="preloader">
-        <div class="loader-logo">A & D</div>
+<div id="loader">
+    <div class="loader-monogram">A & D</div>
+    <div class="loader-text">ROYAL WEDDING INVITATION</div>
+</div>
+
+<div class="corner top-left"></div>
+<div class="corner top-right"></div>
+<div class="corner bottom-left"></div>
+<div class="corner bottom-right"></div>
+
+<div class="particles" id="particles"></div>
+
+<div class="invitation-card">
+
+    <div class="crown fade delay1">👑</div>
+
+    <div class="monogram fade delay2">
+        A & D
     </div>
 
-    <div class="particles-container" id="particles"></div>
-    <div class="wedding-bg-silhouette" id="weddingSilhouette"></div>
-    
-    <div class="luxury-border" id="luxuryBorder"></div>
-    <div class="corner top-left" id="c1"></div>
-    <div class="corner top-right" id="c2"></div>
-    <div class="corner bottom-left" id="c3"></div>
-    <div class="corner bottom-right" id="c4"></div>
+    <div class="subtitle fade delay2">
+        ROYAL WEDDING CELEBRATION
+    </div>
 
-    <div class="main-container">
-        
-        <div class="monogram animate-reveal" style="transition-delay: 1.2s;">A & D</div> 
-        <div class="subtitle animate-reveal" style="transition-delay: 1.4s;">THE WEDDING CELEBRATION</div>
-        
-        <div class="divider animate-reveal" style="transition-delay: 1.6s;"></div>
+    <div class="divider fade delay3"></div>
 
-        <h1 class="names animate-reveal" style="transition-delay: 1.8s;">AHMED & DONIA</h1>
-        
-        <p class="invitation-text animate-reveal" style="transition-delay: 2.0s;">
-            بكل حب وفرح، ندعوكم لمشاركتنا ليلة العمر وتوثيق أجمل لحظات حياتنا. <br>
-            حضوركم يكتمل به السعد وتضاء به الأنوار.
-        </p>
+    <div class="names fade delay3">
+        AHMED <br> & <br> DONIA
+    </div>
 
-        <div class="countdown-container animate-reveal" style="transition-delay: 2.2s;">
-            <div class="countdown-box">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">ثانية</span>
-            </div>
-            <div class="countdown-box">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">دقيقة</span>
-            </div>
-            <div class="countdown-box">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">ساعة</span>
-            </div>
-            <div class="countdown-box">
-                <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">يوم</span>
-            </div>
+    <div class="invitation-text fade delay4">
+        بكل فخر وسعادة، نتشرف بدعوتكم لحضور حفل زفافنا الملكي،
+        لنحتفل معًا ببداية أجمل قصة حب، في ليلة تملؤها
+        الأناقة والفرح والذكريات الخالدة.
+        <br><br>
+        حضوركم يشرفنا ويزيد ليلتنا جمالًا وبهجة.
+    </div>
+
+    <div class="divider fade delay5"></div>
+
+    <div class="date fade delay5">
+        29 • OCTOBER • 2026
+    </div>
+
+    <div class="location fade delay5">
+        GRAND ROYAL PALACE
+    </div>
+
+    <div class="countdown fade delay6">
+
+        <div class="box">
+            <div class="number" id="days">00</div>
+            <div class="label">DAY</div>
         </div>
 
-        <div class="wedding-date animate-reveal" style="transition-delay: 2.4s;">
-            29 . 10 . 2026
+        <div class="box">
+            <div class="number" id="hours">00</div>
+            <div class="label">HOUR</div>
+        </div>
+
+        <div class="box">
+            <div class="number" id="minutes">00</div>
+            <div class="label">MIN</div>
+        </div>
+
+        <div class="box">
+            <div class="number" id="seconds">00</div>
+            <div class="label">SEC</div>
         </div>
 
     </div>
 
-    <script>
-        // إمساك وتفعيل حركة الأنيميشن عند الفتح مباشرة
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                
-                // إظهار الخلفية الفنية للعروسين بسلاسة
-                document.getElementById('weddingSilhouette').style.opacity = '1';
-                
-                // تفعيل الإطارات
-                document.getElementById('luxuryBorder').style.opacity = '1';
-                document.getElementById('luxuryBorder').style.transform = 'scale(1)';
-                ['c1', 'c2', 'c3', 'c4'].forEach(id => {
-                    document.getElementById(id).style.opacity = '1';
-                    document.getElementById(id).style.transform = 'translate(0, 0)';
-                });
+</div>
 
-                // تفعيل ظهور النصوص والعداد بترتيب زمني منسق
-                const reveals = document.querySelectorAll('.animate-reveal');
-                reveals.forEach(el => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                });
+<script>
 
-                setTimeout(() => { preloader.remove(); }, 1000);
-            }, 1500); 
-        });
+/* ========================= */
+/* شاشة التحميل */
+/* ========================= */
 
-        // توليد تأثير جزيئات الغبار الذهبي العصرية
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 35;
+window.addEventListener('load',()=>{
 
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            const size = Math.random() * 3 + 2; 
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.animationDuration = `${Math.random() * 7 + 7}s`; 
-            particle.style.animationDelay = `${Math.random() * 5s}`;
-            
-            particlesContainer.appendChild(particle);
-        }
+    setTimeout(()=>{
+        document.getElementById('loader').style.opacity='0';
 
-        // حساب العداد التنازلي التلقائي لـ 29 أكتوبر 2026
-        const weddingDate = new Date("October 29, 2026 19:00:00").getTime();
+        setTimeout(()=>{
+            document.getElementById('loader').remove();
+        },1200);
 
-        const countdownInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
+    },2200);
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+});
 
-            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+/* ========================= */
+/* Particles */
+/* ========================= */
 
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                document.querySelector(".countdown-container").innerHTML = "<h2 style='color:#dfba6b; font-family:\"Cairo\";'>اليوم زفاف أحمد ودنيا السعيد! زفاف مبارك</h2>";
-            }
-        }, 1000);
-    </script>
+const particles = document.getElementById('particles');
+
+for(let i=0;i<50;i++){
+
+    const p=document.createElement('div');
+
+    p.classList.add('particle');
+
+    const size=Math.random()*4+1;
+
+    p.style.width=size+'px';
+    p.style.height=size+'px';
+
+    p.style.left=Math.random()*100+'%';
+
+    p.style.animationDuration=(Math.random()*10+8)+'s';
+    p.style.animationDelay=(Math.random()*5)+'s';
+
+    particles.appendChild(p);
+}
+
+/* ========================= */
+/* Countdown */
+/* ========================= */
+
+const weddingDate = new Date("October 29, 2026 20:00:00").getTime();
+
+const interval = setInterval(()=>{
+
+    const now = new Date().getTime();
+
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+    document.getElementById('days').innerHTML = days < 10 ? '0'+days : days;
+    document.getElementById('hours').innerHTML = hours < 10 ? '0'+hours : hours;
+    document.getElementById('minutes').innerHTML = minutes < 10 ? '0'+minutes : minutes;
+    document.getElementById('seconds').innerHTML = seconds < 10 ? '0'+seconds : seconds;
+
+    if(distance < 0){
+
+        clearInterval(interval);
+
+        document.querySelector('.countdown').innerHTML = `
+            <div style="
+            color:#D4AF37;
+            font-size:2rem;
+            font-family:Cinzel;
+            ">
+            ✨ TODAY IS THE ROYAL WEDDING ✨
+            </div>
+        `;
+    }
+
+},1000);
+
+</script>
+
 </body>
-</html>
+    </html>
