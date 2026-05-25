@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Royal Wedding Invitation | Ahmed & Donia</title>
+
+<title>Ahmed & Donia Wedding</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,11 +15,10 @@
 
 :root{
     --bg:#050505;
-    --gold:#D4AF37;
-    --gold-light:#f7e7a9;
-    --gold-dark:#8f6b14;
-    --white:#f8f8f8;
-    --glass:rgba(255,255,255,0.05);
+    --gold:#d4af37;
+    --gold-light:#f6e6a8;
+    --gold-dark:#8f6a14;
+    --white:#f5f5f5;
 }
 
 *{
@@ -28,41 +28,39 @@
 }
 
 body{
+    background:
+    radial-gradient(circle at top, rgba(212,175,55,.15), transparent 25%),
+    linear-gradient(to bottom,#050505,#0d0d0d 50%,#000);
     min-height:100vh;
     overflow:hidden;
-    background:
-    radial-gradient(circle at top, rgba(212,175,55,0.15), transparent 30%),
-    linear-gradient(to bottom,#050505,#0d0d0d 40%,#000);
     font-family:'Cairo',sans-serif;
-    color:white;
     display:flex;
     justify-content:center;
     align-items:center;
+    color:white;
     position:relative;
 }
 
-/* ============================= */
-/* الخلفية الملكية */
-/* ============================= */
+/* ================================= */
+/* خلفية زخارف متحركة */
+/* ================================= */
 
-body::before{
-    content:'';
+.bg-pattern{
     position:absolute;
     inset:0;
-    background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-opacity='.06'%3E%3Cpath d='M150 0v300M0 150h300'/%3E%3Ccircle cx='150' cy='150' r='100'/%3E%3Ccircle cx='150' cy='150' r='60'/%3E%3C/g%3E%3C/svg%3E");
-    opacity:.5;
-    animation:bgMove 40s linear infinite;
+    opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23d4af37' stroke-width='1'%3E%3Ccircle cx='130' cy='130' r='100'/%3E%3Ccircle cx='130' cy='130' r='60'/%3E%3Cpath d='M130 0v260M0 130h260'/%3E%3C/g%3E%3C/svg%3E");
+    animation:moveBg 40s linear infinite;
 }
 
-@keyframes bgMove{
+@keyframes moveBg{
     from{transform:translateY(0)}
     to{transform:translateY(-200px)}
 }
 
-/* ============================= */
-/* شاشة التحميل */
-/* ============================= */
+/* ================================= */
+/* شاشة البداية */
+/* ================================= */
 
 #loader{
     position:fixed;
@@ -70,15 +68,15 @@ body::before{
     background:#000;
     z-index:99999;
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
     transition:1.2s ease;
 }
 
-.loader-monogram{
-    font-size:7rem;
+.loader-logo{
     font-family:'Alex Brush',cursive;
+    font-size:7rem;
     background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
@@ -86,215 +84,227 @@ body::before{
 }
 
 .loader-text{
+    color:#d6bd77;
+    letter-spacing:7px;
     margin-top:10px;
-    letter-spacing:8px;
-    color:#c9b06a;
     font-size:.9rem;
 }
 
 @keyframes glow{
     0%,100%{
         transform:scale(1);
-        filter:drop-shadow(0 0 10px rgba(212,175,55,.1));
+        filter:drop-shadow(0 0 10px rgba(212,175,55,.2));
     }
     50%{
         transform:scale(1.05);
-        filter:drop-shadow(0 0 25px rgba(212,175,55,.6));
+        filter:drop-shadow(0 0 30px rgba(212,175,55,.7));
     }
 }
 
-/* ============================= */
-/* زخارف ملكية */
-/* ============================= */
+/* ================================= */
+/* الإطار الفخم */
+/* ================================= */
 
-.corner{
+.frame{
     position:fixed;
-    width:90px;
-    height:90px;
-    z-index:10;
-    opacity:.5;
-}
-
-.top-left{
-    top:20px;
-    left:20px;
-    border-top:2px solid var(--gold);
-    border-left:2px solid var(--gold);
-}
-
-.top-right{
-    top:20px;
-    right:20px;
-    border-top:2px solid var(--gold);
-    border-right:2px solid var(--gold);
-}
-
-.bottom-left{
-    bottom:20px;
-    left:20px;
-    border-bottom:2px solid var(--gold);
-    border-left:2px solid var(--gold);
-}
-
-.bottom-right{
-    bottom:20px;
-    right:20px;
-    border-bottom:2px solid var(--gold);
-    border-right:2px solid var(--gold);
-}
-
-/* ============================= */
-/* الكارت الرئيسي */
-/* ============================= */
-
-.invitation-card{
-    width:90%;
-    max-width:900px;
-    padding:70px 50px;
-    border:1px solid rgba(212,175,55,.2);
-    background:rgba(10,10,10,.55);
-    backdrop-filter:blur(14px);
-    border-radius:40px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-    box-shadow:
-    0 0 40px rgba(0,0,0,.7),
-    0 0 80px rgba(212,175,55,.08);
-    z-index:2;
-}
-
-/* خطوط داخلية */
-
-.invitation-card::before{
-    content:'';
-    position:absolute;
-    inset:15px;
-    border:1px solid rgba(212,175,55,.12);
-    border-radius:30px;
+    inset:18px;
+    border:1px solid rgba(212,175,55,.25);
+    z-index:5;
     pointer-events:none;
 }
 
-/* التاج */
-
-.crown{
-    font-size:4rem;
-    margin-bottom:10px;
-    animation:float 4s ease-in-out infinite;
+.frame::before,
+.frame::after{
+    content:'';
+    position:absolute;
+    inset:12px;
+    border:1px solid rgba(212,175,55,.08);
 }
 
-@keyframes float{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-10px)}
+.corner{
+    position:absolute;
+    width:45px;
+    height:45px;
+    border-color:var(--gold);
+    z-index:6;
 }
+
+.top-left{
+    top:-1px;
+    left:-1px;
+    border-top:2px solid;
+    border-left:2px solid;
+}
+
+.top-right{
+    top:-1px;
+    right:-1px;
+    border-top:2px solid;
+    border-right:2px solid;
+}
+
+.bottom-left{
+    bottom:-1px;
+    left:-1px;
+    border-bottom:2px solid;
+    border-left:2px solid;
+}
+
+.bottom-right{
+    bottom:-1px;
+    right:-1px;
+    border-bottom:2px solid;
+    border-right:2px solid;
+}
+
+/* ================================= */
+/* الكارت */
+/* ================================= */
+
+.card{
+    width:90%;
+    max-width:900px;
+    padding:70px 45px;
+    border-radius:40px;
+    background:rgba(8,8,8,.6);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:
+    0 0 50px rgba(0,0,0,.8),
+    0 0 120px rgba(212,175,55,.08);
+    position:relative;
+    overflow:hidden;
+    z-index:2;
+}
+
+/* لمعة متحركة */
+
+.card::before{
+    content:'';
+    position:absolute;
+    top:-100%;
+    left:-40%;
+    width:50%;
+    height:300%;
+    background:linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,.06),
+        transparent
+    );
+    transform:rotate(25deg);
+    animation:shine 8s infinite;
+}
+
+@keyframes shine{
+    0%{left:-60%}
+    100%{left:130%}
+}
+
+/* ================================= */
+/* المحتوى */
+/* ================================= */
 
 .monogram{
     font-family:'Alex Brush',cursive;
     font-size:6rem;
-    margin-bottom:10px;
+    text-align:center;
+    margin-bottom:5px;
     background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
 .subtitle{
+    text-align:center;
     letter-spacing:8px;
-    font-size:.9rem;
-    color:#bda05b;
-    margin-bottom:30px;
+    color:#ccb06b;
+    font-size:.85rem;
 }
-
-/* الأسماء */
-
-.names{
-    font-family:'Cinzel',serif;
-    font-size:4.5rem;
-    line-height:1.3;
-    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    margin-bottom:30px;
-}
-
-/* النص */
-
-.invitation-text{
-    max-width:700px;
-    margin:auto;
-    line-height:2.3;
-    color:#ddd;
-    font-size:1.2rem;
-    font-weight:300;
-}
-
-/* Divider */
 
 .divider{
     width:180px;
     height:1px;
     background:linear-gradient(to right,transparent,var(--gold),transparent);
-    margin:35px auto;
+    margin:30px auto;
     position:relative;
 }
 
 .divider::after{
     content:'✦';
     position:absolute;
-    top:-13px;
     left:50%;
+    top:-13px;
     transform:translateX(-50%);
-    background:#0b0b0b;
     color:var(--gold);
+    background:#0a0a0a;
     padding:0 10px;
 }
 
+.names{
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:4.5rem;
+    line-height:1.4;
+    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.text{
+    text-align:center;
+    margin-top:25px;
+    line-height:2.4;
+    font-size:1.15rem;
+    color:#d8d8d8;
+    font-weight:300;
+}
+
+/* ================================= */
 /* التاريخ */
+/* ================================= */
 
 .date{
+    text-align:center;
     margin-top:40px;
     font-family:'Cinzel',serif;
+    font-size:1.5rem;
     letter-spacing:8px;
-    font-size:1.6rem;
     color:var(--gold-light);
 }
 
-/* المكان */
-
-.location{
-    margin-top:15px;
-    color:#cfcfcf;
-    font-size:1rem;
-    letter-spacing:2px;
-}
-
+/* ================================= */
 /* العداد */
+/* ================================= */
 
 .countdown{
-    margin-top:45px;
     display:flex;
     justify-content:center;
-    gap:15px;
+    gap:18px;
+    margin-top:45px;
     direction:ltr;
     flex-wrap:wrap;
 }
 
-.box{
+.time-box{
     width:110px;
     padding:20px 10px;
-    background:var(--glass);
-    border:1px solid rgba(212,175,55,.15);
     border-radius:20px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(212,175,55,.12);
     backdrop-filter:blur(8px);
     transition:.4s;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 
-.box:hover{
+.time-box:hover{
     transform:translateY(-8px);
     border-color:rgba(212,175,55,.5);
-    box-shadow:0 15px 35px rgba(212,175,55,.12);
+    box-shadow:0 20px 40px rgba(212,175,55,.12);
 }
 
 .number{
+    text-align:center;
     font-size:2.5rem;
     font-family:'Cinzel',serif;
     background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
@@ -303,12 +313,15 @@ body::before{
 }
 
 .label{
+    text-align:center;
     margin-top:5px;
-    color:#d6d6d6;
+    color:#dadada;
     font-size:.85rem;
 }
 
-/* particles */
+/* ================================= */
+/* الجزيئات */
+/* ================================= */
 
 .particles{
     position:absolute;
@@ -321,11 +334,11 @@ body::before{
     position:absolute;
     border-radius:50%;
     background:radial-gradient(circle,var(--gold-light),transparent);
-    animation:particleMove linear infinite;
-    opacity:.7;
+    opacity:.8;
+    animation:float linear infinite;
 }
 
-@keyframes particleMove{
+@keyframes float{
     from{
         transform:translateY(100vh) scale(0);
     }
@@ -334,43 +347,11 @@ body::before{
     }
 }
 
-/* responsive */
+/* ================================= */
+/* ظهور العناصر */
+/* ================================= */
 
-@media(max-width:768px){
-
-    .invitation-card{
-        padding:50px 25px;
-    }
-
-    .monogram{
-        font-size:4rem;
-    }
-
-    .names{
-        font-size:2.6rem;
-    }
-
-    .invitation-text{
-        font-size:1rem;
-    }
-
-    .box{
-        width:80px;
-        padding:15px 5px;
-    }
-
-    .number{
-        font-size:1.7rem;
-    }
-
-    .date{
-        font-size:1.1rem;
-        letter-spacing:4px;
-    }
-
-}
-
-.fade{
+.reveal{
     opacity:0;
     transform:translateY(30px);
     animation:fadeUp 1.5s forwards;
@@ -381,7 +362,6 @@ body::before{
 .delay3{animation-delay:1.8s}
 .delay4{animation-delay:2.2s}
 .delay5{animation-delay:2.6s}
-.delay6{animation-delay:3s}
 
 @keyframes fadeUp{
     to{
@@ -390,79 +370,116 @@ body::before{
     }
 }
 
+/* ================================= */
+/* Responsive */
+/* ================================= */
+
+@media(max-width:768px){
+
+    .card{
+        padding:50px 25px;
+    }
+
+    .monogram{
+        font-size:4rem;
+    }
+
+    .names{
+        font-size:2.5rem;
+    }
+
+    .text{
+        font-size:1rem;
+    }
+
+    .time-box{
+        width:80px;
+        padding:15px 5px;
+    }
+
+    .number{
+        font-size:1.7rem;
+    }
+
+    .date{
+        font-size:1rem;
+        letter-spacing:4px;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <div id="loader">
-    <div class="loader-monogram">A & D</div>
-    <div class="loader-text">ROYAL WEDDING INVITATION</div>
+    <div class="loader-logo">A & D</div>
+    <div class="loader-text">WEDDING INVITATION</div>
 </div>
 
-<div class="corner top-left"></div>
-<div class="corner top-right"></div>
-<div class="corner bottom-left"></div>
-<div class="corner bottom-right"></div>
+<div class="bg-pattern"></div>
+
+<div class="frame">
+    <div class="corner top-left"></div>
+    <div class="corner top-right"></div>
+    <div class="corner bottom-left"></div>
+    <div class="corner bottom-right"></div>
+</div>
 
 <div class="particles" id="particles"></div>
 
-<div class="invitation-card">
+<div class="card">
 
-    <div class="crown fade delay1">👑</div>
-
-    <div class="monogram fade delay2">
+    <div class="monogram reveal delay1">
         A & D
     </div>
 
-    <div class="subtitle fade delay2">
-        ROYAL WEDDING CELEBRATION
+    <div class="subtitle reveal delay1">
+        TOGETHER FOREVER
     </div>
 
-    <div class="divider fade delay3"></div>
+    <div class="divider reveal delay2"></div>
 
-    <div class="names fade delay3">
+    <div class="names reveal delay2">
         AHMED <br> & <br> DONIA
     </div>
 
-    <div class="invitation-text fade delay4">
-        بكل فخر وسعادة، نتشرف بدعوتكم لحضور حفل زفافنا الملكي،
-        لنحتفل معًا ببداية أجمل قصة حب، في ليلة تملؤها
-        الأناقة والفرح والذكريات الخالدة.
-        <br><br>
-        حضوركم يشرفنا ويزيد ليلتنا جمالًا وبهجة.
+    <div class="text reveal delay3">
+        بكل حب وسعادة ندعوكم لمشاركتنا أجمل ليلة
+        وبداية فصل جديد من حكايتنا،
+        لتكونوا جزءًا من لحظات لا تُنسى
+        مليئة بالفرح والموسيقى والذكريات الجميلة.
     </div>
 
-    <div class="divider fade delay5"></div>
+    <div class="divider reveal delay4"></div>
 
-    <div class="date fade delay5">
-        29 • OCTOBER • 2026
+    <div class="date reveal delay4">
+        29 • 10 • 2026
     </div>
 
-    <div class="location fade delay5">
-        GRAND ROYAL PALACE
-    </div>
+    <!-- العداد -->
 
-    <div class="countdown fade delay6">
+    <div class="countdown reveal delay5">
 
-        <div class="box">
+        <div class="time-box">
             <div class="number" id="days">00</div>
-            <div class="label">DAY</div>
+            <div class="label">يوم</div>
         </div>
 
-        <div class="box">
+        <div class="time-box">
             <div class="number" id="hours">00</div>
-            <div class="label">HOUR</div>
+            <div class="label">ساعة</div>
         </div>
 
-        <div class="box">
+        <div class="time-box">
             <div class="number" id="minutes">00</div>
-            <div class="label">MIN</div>
+            <div class="label">دقيقة</div>
         </div>
 
-        <div class="box">
+        <div class="time-box">
             <div class="number" id="seconds">00</div>
-            <div class="label">SEC</div>
+            <div class="label">ثانية</div>
         </div>
 
     </div>
@@ -471,13 +488,14 @@ body::before{
 
 <script>
 
-/* ========================= */
+/* ============================ */
 /* شاشة التحميل */
-/* ========================= */
+/* ============================ */
 
 window.addEventListener('load',()=>{
 
     setTimeout(()=>{
+
         document.getElementById('loader').style.opacity='0';
 
         setTimeout(()=>{
@@ -488,13 +506,13 @@ window.addEventListener('load',()=>{
 
 });
 
-/* ========================= */
-/* Particles */
-/* ========================= */
+/* ============================ */
+/* particles */
+/* ============================ */
 
-const particles = document.getElementById('particles');
+const particles=document.getElementById('particles');
 
-for(let i=0;i<50;i++){
+for(let i=0;i<55;i++){
 
     const p=document.createElement('div');
 
@@ -508,16 +526,17 @@ for(let i=0;i<50;i++){
     p.style.left=Math.random()*100+'%';
 
     p.style.animationDuration=(Math.random()*10+8)+'s';
+
     p.style.animationDelay=(Math.random()*5)+'s';
 
     particles.appendChild(p);
 }
 
-/* ========================= */
+/* ============================ */
 /* Countdown */
-/* ========================= */
+/* ============================ */
 
-const weddingDate = new Date("October 29, 2026 20:00:00").getTime();
+const weddingDate = new Date("2026-10-29T20:00:00").getTime();
 
 const interval = setInterval(()=>{
 
@@ -525,27 +544,48 @@ const interval = setInterval(()=>{
 
     const distance = weddingDate - now;
 
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-    document.getElementById('days').innerHTML = days < 10 ? '0'+days : days;
-    document.getElementById('hours').innerHTML = hours < 10 ? '0'+hours : hours;
-    document.getElementById('minutes').innerHTML = minutes < 10 ? '0'+minutes : minutes;
-    document.getElementById('seconds').innerHTML = seconds < 10 ? '0'+seconds : seconds;
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+        (distance % (1000 * 60)) /
+        1000
+    );
+
+    document.getElementById("days").innerHTML =
+        days < 10 ? "0"+days : days;
+
+    document.getElementById("hours").innerHTML =
+        hours < 10 ? "0"+hours : hours;
+
+    document.getElementById("minutes").innerHTML =
+        minutes < 10 ? "0"+minutes : minutes;
+
+    document.getElementById("seconds").innerHTML =
+        seconds < 10 ? "0"+seconds : seconds;
 
     if(distance < 0){
 
         clearInterval(interval);
 
-        document.querySelector('.countdown').innerHTML = `
+        document.querySelector(".countdown").innerHTML = `
             <div style="
-            color:#D4AF37;
-            font-size:2rem;
-            font-family:Cinzel;
+                color:#d4af37;
+                font-size:2rem;
+                text-align:center;
+                width:100%;
+                font-family:'Cinzel',serif;
             ">
-            ✨ TODAY IS THE ROYAL WEDDING ✨
+                ✨ اليوم يوم الفرح ✨
             </div>
         `;
     }
@@ -555,4 +595,4 @@ const interval = setInterval(()=>{
 </script>
 
 </body>
-    </html>
+</html>
