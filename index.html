@@ -14,11 +14,12 @@
 <style>
 
 :root{
-    --bg:#050505;
-    --gold:#d4af37;
-    --gold-light:#f6e6a8;
-    --gold-dark:#8f6a14;
-    --white:#f5f5f5;
+    /* تم تعديل الألوان إلى درجات فاتحة ومبهجة تناسب الأفراح */
+    --bg: #faf7f2;          /* خلفية عاجية فاتحة */
+    --gold: #c5a059;        /* ذهبي ملكي متناسق مع الخلفية الفاتحة */
+    --gold-light: #e5cc96;  /* ذهبي مضيء */
+    --gold-dark: #8f6a14;   /* ذهبي دافئ للخطوط */
+    --text-dark: #4a4238;   /* لون نصوص مريح للعين بديل للأبيض */
 }
 
 *{
@@ -28,28 +29,29 @@
 }
 
 body{
+    /* خلفية عامة فاتحة مع تدرج ناعم يعطي إحساساً بالفخامة والاتساع */
     background:
-    radial-gradient(circle at top, rgba(212,175,55,.15), transparent 25%),
-    linear-gradient(to bottom,#050505,#0d0d0d 50%,#000);
+    radial-gradient(circle at top, rgba(246, 230, 168, 0.4), transparent 40%),
+    linear-gradient(to bottom, #faf7f2, #f3ede2 60%, #eae2d5);
     min-height:100vh;
-    overflow:hidden;
+    overflow-x:hidden;
     font-family:'Cairo',sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
+    color: var(--text-dark);
     position:relative;
 }
 
 /* ================================= */
-/* خلفية زخارف متحركة */
+/* خلفية زخارف متحركة (فاتحة) */
 /* ================================= */
 
 .bg-pattern{
     position:absolute;
     inset:0;
-    opacity:.07;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23d4af37' stroke-width='1'%3E%3Ccircle cx='130' cy='130' r='100'/%3E%3Ccircle cx='130' cy='130' r='60'/%3E%3Cpath d='M130 0v260M0 130h260'/%3E%3C/g%3E%3C/svg%3E");
+    opacity:.12;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23c5a059' stroke-width='1'%3E%3Ccircle cx='130' cy='130' r='100'/%3E%3Ccircle cx='130' cy='130' r='60'/%3E%3Cpath d='M130 0v260M0 130h260'/%3E%3C/g%3E%3C/svg%3E");
     animation:moveBg 40s linear infinite;
 }
 
@@ -59,13 +61,13 @@ body{
 }
 
 /* ================================= */
-/* شاشة البداية */
+/* شاشة البداية (فاتحة) */
 /* ================================= */
 
 #loader{
     position:fixed;
     inset:0;
-    background:#000;
+    background:#faf7f2;
     z-index:99999;
     display:flex;
     justify-content:center;
@@ -77,38 +79,39 @@ body{
 .loader-logo{
     font-family:'Alex Brush',cursive;
     font-size:7rem;
-    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
+    background:linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
     animation:glow 2s infinite ease-in-out;
 }
 
 .loader-text{
-    color:#d6bd77;
+    color: var(--gold-dark);
     letter-spacing:7px;
     margin-top:10px;
     font-size:.9rem;
+    font-weight: 600;
 }
 
 @keyframes glow{
     0%,100%{
         transform:scale(1);
-        filter:drop-shadow(0 0 10px rgba(212,175,55,.2));
+        filter:drop-shadow(0 0 10px rgba(197, 160, 89, 0.2));
     }
     50%{
         transform:scale(1.05);
-        filter:drop-shadow(0 0 30px rgba(212,175,55,.7));
+        filter:drop-shadow(0 0 20px rgba(197, 160, 89, 0.5));
     }
 }
 
 /* ================================= */
-/* الإطار الفخم */
+/* الإطار الفخم الفاتح */
 /* ================================= */
 
 .frame{
     position:fixed;
     inset:18px;
-    border:1px solid rgba(212,175,55,.25);
+    border:1px solid rgba(197, 160, 89, 0.3);
     z-index:5;
     pointer-events:none;
 }
@@ -118,7 +121,7 @@ body{
     content:'';
     position:absolute;
     inset:12px;
-    border:1px solid rgba(212,175,55,.08);
+    border:1px solid rgba(197, 160, 89, 0.15);
 }
 
 .corner{
@@ -129,36 +132,13 @@ body{
     z-index:6;
 }
 
-.top-left{
-    top:-1px;
-    left:-1px;
-    border-top:2px solid;
-    border-left:2px solid;
-}
-
-.top-right{
-    top:-1px;
-    right:-1px;
-    border-top:2px solid;
-    border-right:2px solid;
-}
-
-.bottom-left{
-    bottom:-1px;
-    left:-1px;
-    border-bottom:2px solid;
-    border-left:2px solid;
-}
-
-.bottom-right{
-    bottom:-1px;
-    right:-1px;
-    border-bottom:2px solid;
-    border-right:2px solid;
-}
+.top-left{ top:-1px; left:-1px; border-top:2px solid; border-left:2px solid; }
+.top-right{ top:-1px; right:-1px; border-top:2px solid; border-right:2px solid; }
+.bottom-left{ bottom:-1px; left:-1px; border-bottom:2px solid; border-left:2px solid; }
+.bottom-right{ bottom:-1px; right:-1px; border-bottom:2px solid; border-right:2px solid; }
 
 /* ================================= */
-/* الكارت */
+/* كارت الدعوة (بخلفية فرح مخصصة) */
 /* ================================= */
 
 .card{
@@ -166,19 +146,24 @@ body{
     max-width:900px;
     padding:70px 45px;
     border-radius:40px;
-    background:rgba(8,8,8,.6);
+    
+    /* خلفية فرح: بيضاء عاجية دافئة، مدمجة مع نقشة ورد وزخارف كلاسيكية ناعمة للأفراح */
+    background-color: #ffffff;
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.5), #ffffff),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23c5a059' fill-opacity='0.04'%3E%3Cpath d='M40 0c5 15 20 20 20 40s-15 25-20 40c-5-15-20-20-20-40S35 15 40 0z'/%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3C/g%3E%3C/svg%3E");
+    
     backdrop-filter:blur(14px);
-    border:1px solid rgba(255,255,255,.05);
+    border:1px solid rgba(197, 160, 89, 0.25);
     box-shadow:
-    0 0 50px rgba(0,0,0,.8),
-    0 0 120px rgba(212,175,55,.08);
+    0 20px 50px rgba(165, 140, 100, 0.15),
+    0 0 80px rgba(197, 160, 89, 0.05);
     position:relative;
     overflow:hidden;
     z-index:2;
 }
 
-/* لمعة متحركة */
-
+/* لمعة متحركة ناعمة بيضاء */
 .card::before{
     content:'';
     position:absolute;
@@ -189,7 +174,7 @@ body{
     background:linear-gradient(
         to right,
         transparent,
-        rgba(255,255,255,.06),
+        rgba(255,255,255,0.6),
         transparent
     );
     transform:rotate(25deg);
@@ -210,7 +195,7 @@ body{
     font-size:6rem;
     text-align:center;
     margin-bottom:5px;
-    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
+    background:linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
@@ -218,8 +203,9 @@ body{
 .subtitle{
     text-align:center;
     letter-spacing:8px;
-    color:#ccb06b;
+    color: var(--gold-dark);
     font-size:.85rem;
+    font-weight: 600;
 }
 
 .divider{
@@ -237,7 +223,7 @@ body{
     top:-13px;
     transform:translateX(-50%);
     color:var(--gold);
-    background:#0a0a0a;
+    background:#ffffff; /* متناسق مع خلفية الكارت الفاتحة */
     padding:0 10px;
 }
 
@@ -246,7 +232,8 @@ body{
     font-family:'Cinzel',serif;
     font-size:4.5rem;
     line-height:1.4;
-    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
+    font-weight: 600;
+    background:linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
@@ -255,9 +242,9 @@ body{
     text-align:center;
     margin-top:25px;
     line-height:2.4;
-    font-size:1.15rem;
-    color:#d8d8d8;
-    font-weight:300;
+    font-size:1.2rem;
+    color: var(--text-dark);
+    font-weight:600;
 }
 
 /* ================================= */
@@ -268,13 +255,14 @@ body{
     text-align:center;
     margin-top:40px;
     font-family:'Cinzel',serif;
-    font-size:1.5rem;
+    font-size:1.6rem;
     letter-spacing:8px;
-    color:var(--gold-light);
+    color: var(--gold-dark);
+    font-weight: 700;
 }
 
 /* ================================= */
-/* العداد */
+/* العداد الفاتح */
 /* ================================= */
 
 .countdown{
@@ -290,24 +278,25 @@ body{
     width:110px;
     padding:20px 10px;
     border-radius:20px;
-    background:rgba(255,255,255,.03);
-    border:1px solid rgba(212,175,55,.12);
+    background: rgba(245, 240, 230, 0.5); /* خلفية فاتحة ومريحة داخل الصناديق */
+    border:1px solid rgba(197, 160, 89, 0.25);
     backdrop-filter:blur(8px);
     transition:.4s;
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
+    box-shadow: 0 8px 20px rgba(165, 140, 100, 0.1);
 }
 
 .time-box:hover{
     transform:translateY(-8px);
-    border-color:rgba(212,175,55,.5);
-    box-shadow:0 20px 40px rgba(212,175,55,.12);
+    border-color: var(--gold);
+    box-shadow: 0 15px 30px rgba(197, 160, 89, 0.2);
 }
 
 .number{
     text-align:center;
     font-size:2.5rem;
     font-family:'Cinzel',serif;
-    background:linear-gradient(135deg,var(--gold-dark),var(--gold-light),var(--gold));
+    font-weight: 700;
+    background:linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
@@ -315,12 +304,13 @@ body{
 .label{
     text-align:center;
     margin-top:5px;
-    color:#dadada;
-    font-size:.85rem;
+    color: var(--text-dark);
+    font-size:.9rem;
+    font-weight: 600;
 }
 
 /* ================================= */
-/* الجزيئات */
+/* الجزيئات والقصاصات الذهبية المتطايرة */
 /* ================================= */
 
 .particles{
@@ -333,17 +323,17 @@ body{
 .particle{
     position:absolute;
     border-radius:50%;
-    background:radial-gradient(circle,var(--gold-light),transparent);
-    opacity:.8;
+    background: radial-gradient(circle, var(--gold-light), var(--gold));
+    opacity:.6;
     animation:float linear infinite;
 }
 
 @keyframes float{
     from{
-        transform:translateY(100vh) scale(0);
+        transform:translateY(100vh) scale(0) rotate(0deg);
     }
     to{
-        transform:translateY(-10vh) scale(1);
+        transform:translateY(-10vh) scale(1) rotate(360deg);
     }
 }
 
@@ -381,15 +371,15 @@ body{
     }
 
     .monogram{
-        font-size:4rem;
+        font-size:4.5rem;
     }
 
     .names{
-        font-size:2.5rem;
+        font-size:2.8rem;
     }
 
     .text{
-        font-size:1rem;
+        font-size:1.05rem;
     }
 
     .time-box{
@@ -402,10 +392,9 @@ body{
     }
 
     .date{
-        font-size:1rem;
+        font-size:1.2rem;
         letter-spacing:4px;
     }
-
 }
 
 </style>
@@ -458,8 +447,7 @@ body{
         29 • 10 • 2026
     </div>
 
-    <!-- العداد -->
-
+    <!-- العداد تنازلي -->
     <div class="countdown reveal delay5">
 
         <div class="time-box">
@@ -491,105 +479,69 @@ body{
 /* ============================ */
 /* شاشة التحميل */
 /* ============================ */
-
 window.addEventListener('load',()=>{
-
     setTimeout(()=>{
-
         document.getElementById('loader').style.opacity='0';
-
         setTimeout(()=>{
             document.getElementById('loader').remove();
         },1200);
-
     },2200);
-
 });
 
 /* ============================ */
-/* particles */
+/* القصاصات المتطايرة */
 /* ============================ */
-
 const particles=document.getElementById('particles');
 
 for(let i=0;i<55;i++){
-
     const p=document.createElement('div');
-
     p.classList.add('particle');
-
-    const size=Math.random()*4+1;
+    const size=Math.random()*5+2; /* حجم جزيئات أوضح وأجمل للفلف خلفية فاتحة */
 
     p.style.width=size+'px';
     p.style.height=size+'px';
-
     p.style.left=Math.random()*100+'%';
-
     p.style.animationDuration=(Math.random()*10+8)+'s';
-
     p.style.animationDelay=(Math.random()*5)+'s';
 
     particles.appendChild(p);
 }
 
 /* ============================ */
-/* Countdown */
+/* العداد التنازلي */
 /* ============================ */
-
 const weddingDate = new Date("2026-10-29T20:00:00").getTime();
 
 const interval = setInterval(()=>{
 
     const now = new Date().getTime();
-
     const distance = weddingDate - now;
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) /
-        (1000 * 60 * 60)
-    );
-
-    const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) /
-        (1000 * 60)
-    );
-
-    const seconds = Math.floor(
-        (distance % (1000 * 60)) /
-        1000
-    );
-
-    document.getElementById("days").innerHTML =
-        days < 10 ? "0"+days : days;
-
-    document.getElementById("hours").innerHTML =
-        hours < 10 ? "0"+hours : hours;
-
-    document.getElementById("minutes").innerHTML =
-        minutes < 10 ? "0"+minutes : minutes;
-
-    document.getElementById("seconds").innerHTML =
-        seconds < 10 ? "0"+seconds : seconds;
+    document.getElementById("days").innerHTML = days < 10 ? "0"+days : days;
+    document.getElementById("hours").innerHTML = hours < 10 ? "0"+hours : hours;
+    document.getElementById("minutes").innerHTML = minutes < 10 ? "0"+minutes : minutes;
+    document.getElementById("seconds").innerHTML = seconds < 10 ? "0"+seconds : seconds;
 
     if(distance < 0){
-
         clearInterval(interval);
-
         document.querySelector(".countdown").innerHTML = `
             <div style="
-                color:#d4af37;
+                color:#c5a059;
                 font-size:2rem;
                 text-align:center;
                 width:100%;
-                font-family:'Cinzel',serif;
+                font-family:'Cairo', sans-serif;
+                font-weight: 700;
             ">
                 ✨ اليوم يوم الفرح ✨
             </div>
         `;
     }
-
 },1000);
 
 </script>
